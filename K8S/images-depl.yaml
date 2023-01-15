@@ -1,0 +1,33 @@
+#deployment for a container into a pod
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: images-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: imagemicroservice
+  template:
+    metadata:
+      labels:
+        app: imagemicroservice
+    spec:
+      containers:
+        - name: imagemicroservice
+          image: panic7/imagemicroservice:latest
+---
+#adding cluster service ip into deployment
+apiVersion: v1
+kind: Service
+metadata:
+  name: images-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: imagemicroservice
+  ports:
+  - name: imagemicroservice
+    protocol: TCP
+    port: 80
+    targetPort: 80

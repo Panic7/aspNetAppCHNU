@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option csharp_namespace = "EventMicroservice.Bll.Protos";
+
+service GrpcEvent {
+    rpc GetAllEvents (GetAllRequest) returns (EventResponse);
+}
+
+message GetAllRequest {}
+message GrpcEventModel{
+    int32 eventId = 1;
+    string name = 2;
+}
+
+message EventResponse {
+    repeated GrpcEventModel event = 1;
+}

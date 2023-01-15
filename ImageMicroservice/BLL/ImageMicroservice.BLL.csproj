@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0"/>
+    <PackageReference Include="FluentValidation" Version="11.4.0"/>
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0"/>
+    <PackageReference Include="CloudinaryDotNet" Version="1.20.0"/>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0"/>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0"/>
+    <PackageReference Include="RabbitMQ.Client" Version="6.4.0"/>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.50.0"/>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\ImageMicroservice.DAL.csproj"/>
+  </ItemGroup>
+    <ItemGroup>
+    <Protobuf Include="Protos\events.proto" GrpcServices="Client" />
+  </ItemGroup>
+</Project>

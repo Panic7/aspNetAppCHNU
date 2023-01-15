@@ -1,0 +1,36 @@
+#deployment for a container into a pod
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: events-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eventmicroservice
+  template:
+    metadata:
+      labels:
+        app: eventmicroservice
+    spec:
+      containers:
+        - name: eventmicroservice
+          image: panic7/eventmicroservice:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: events-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: eventmicroservice
+  ports:
+  - name: eventmicroservice
+    protocol: TCP
+    port: 80
+    targetPort: 80
+  - name: eventgrpc
+    protocol: TCP
+    port: 666
+    targetPort: 666
